@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools", "wheel", "setuptools_scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dev-sync"
+dynamic = ["version"]
+description = "A tool to sync development environments across machines"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [
+    {name = "Erick Benitez-Ramos"}
+]
+dependencies = [
+    "saiuncli>=0.1.12"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0,<8",
+    "black>=22.0,<23",
+    "flake8",
+    "build",
+    "twine"
+]
+all = [
+    "pytest>=7.0,<8",
+    "black>=22.0,<23",
+    "flake8",
+    "build",
+    "twine",
+]
+
+[project.urls]
+repository = "https://github.com/Erickkbentz/dev-sync"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.dynamic]
+version = {attr = "dev_sync.__version__"}
+
+[project.scripts]
+dev-sync = "dev_sync.cli:main"
